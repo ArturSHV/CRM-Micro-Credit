@@ -1,0 +1,292 @@
+﻿@{
+    ViewData["Title"] = "Информация о Вас";
+}
+
+@model User
+
+
+<!-- Content -->
+<main>
+    <div class="container">
+        <form asp-controller="@nameof(InfoCreditController)[..^10]" asp-action="@nameof(InfoCreditController.Index)" method="post">
+            <div class="row">
+            <nav class="nav nav-pills nav-pills-credit flex-column flex-sm-row mb-5">
+                <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="#">Информация о вас</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="#">Подтверждение условии</a>
+                <a class="flex-sm-fill text-sm-center nav-link" href="#">Перевод</a>
+            </nav>
+
+            <div class="page-card mb-5">
+                <div class="page-title">Паспортные Данные</div>
+                <div class="page-content">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.LastName">Фамилия</label>
+                                <input class="bold-control" type="text" asp-for="@Model.LastName" value="@Model.LastName" placeholder="Фамилия">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Firstname">Имя</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.Firstname" value="@Model.Firstname" placeholder="Имя">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Middlename">Отчество</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.Middlename" value="@Model.Middlename" placeholder="Отчество">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="date1">Дата рождения</label>
+                                <div class="more-controls">
+                                    <input class="bold-control" type="text" name="date1" placeholder="ДД"><!---->
+                                    <input class="bold-control" type="text" name="date2" placeholder="ММ">
+                                    <input class="bold-control" type="text" name="date3" placeholder="ГГГГ">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="sex">Пол</label>
+                                <div class="radios-controls">
+                                    <div class="form-check">
+                                            <input class="form-check-input" type="radio" asp-for="@Model.Gender" value="male" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            Мужской
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                            <input class="form-check-input" type="radio" asp-for="@Model.Gender" value="female" id="flexRadioDefault2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Женский
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.MaritalStatus">Семейное положение</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.MaritalStatus" value="@Model.MaritalStatus" placeholder="">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.SocialNumber">ИНН</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.SocialNumber" value="@Model.SocialNumber" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.PassportNumber">№ Удостоверения личности</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.PassportNumber" value="@Model.PassportNumber" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.PlaceOfBirth">Место рождения</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.PlaceOfBirth" value="@Model.PlaceOfBirth" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="controls-content">
+                                <label class="label-shit" for="middlename">Срок Действия</label> <!---->
+                                <div class="more-controls">
+                                    <input class="bold-control" type="text" name="date1" placeholder="ДД">
+                                    <input class="bold-control" type="text" name="date2" placeholder="ММ">
+                                    <input class="bold-control" type="text" name="date3" placeholder="ГГГГ">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-card mb-5">
+                <div class="page-title">Адрес регистрации</div>
+                <div class="page-content">
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Area">Область</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.Area" value="@Model.Area" placeholder="Область">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Region">Регион проживания</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.Region" value="@Model.Region" placeholder="Регион проживания">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.City">Город/село</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.City" value="@Model.City" placeholder="Город/село">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Street">Улица/Микрорайон</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.Street" value="@Model.Street" placeholder="Улица/Микрорайон">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.House">Дом</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.House" value="@Model.House" placeholder="Дом">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Appartment">Квартира</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.Appartment" value="@Model.Appartment" placeholder="Квартира">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-card mb-5">
+                <div class="page-title">Занятость и доходы</div>
+                <div class="page-content">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Work">Занятость</label>
+                                    <select class="bold-control" asp-for="@Model.Work">
+                                    <option value="">Говнонаводчик</option>
+                                    <option value="">Хуетендер</option>
+                                    <option value="">Хуикс/Юикс дизайнер</option>
+                                    <option value="">Трубочист</option>
+                                    <option value="">Метатель говна</option>
+                                    <option value="">Хуеорлог</option>
+                                    <option value="">Хуетестер</option>
+                                    <option value="">Хуестальщик</option>
+                                    <option value="">Водолаз</option>
+                                    <option value="">Работа в Сбербанке (Отдаленно)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Education">Образование</label>
+                                    <select class="bold-control" asp-for="@Model.Education">
+                                    <option value="">Вместо школы пошел пиздить металл</option>
+                                    <option value="">Окончил 4 класса</option>
+                                    <option value="">Выгнали в 6 классе</option>
+                                    <option value="">Доучился до 8 класса</option>
+                                    <option value="">9 классов ранга</option>
+                                    <option value="">11 классов духа</option>
+                                    <option value="">Окончил местный чухан</option>
+                                    <option value="">Выгнали с чухана</option>
+                                    <option value="">Поступил как еблан - пошел в ВУЗ</option>
+                                    <option value="">Забил хуй и пошел на завод</option>
+                                    <option value="">Пошел/Пошла на трассу</option>
+                                    <option value="">Сел в тюрьму</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.Revenue">Ежемесячный доход, в тг.</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.Revenue" value="@Model.Revenue" placeholder="Введите значение">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="page-card mb-5">
+                <div class="page-title">Дополнительный контакт</div>
+                <div class="page-content">
+                    <div class="row mb-3">
+                        <div class="basic-info">Укажите дополнительный контакт</div>
+
+                        <div class="col-md-6">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.AdditionalPhone">Номер телефона</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.AdditionalPhone" value="@Model.AdditionalPhone" placeholder="Регион проживания">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.AdditionalRegion">Регион проживания</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.AdditionalRegion" value="@Model.AdditionalRegion" placeholder="Регион проживания">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="controls-content">
+                                <label class="label-shit" for="@Model.City">Город/село</label>
+                                    <input class="bold-control" type="text" asp-for="@Model.City" value="@Model.City" placeholder="Город/село">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-card mb-3">
+                <div class="page-title">Согласие с условиями</div>
+                <div class="page-content">
+                    <div class="row mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Я ознакомлен(а) и принимаю настоящие условия использования сервиса
+                            </label>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Я ознакомлен(а) и принимаю политику конфиденциальности сервиса
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-button">
+                <button type="submit" class="button-classic">Редактировать</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</main>

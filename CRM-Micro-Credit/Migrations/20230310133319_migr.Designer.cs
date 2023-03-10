@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRM_Micro_Credit.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230309102808_init")]
-    partial class init
+    [Migration("20230310133319_migr")]
+    partial class migr
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,71 @@ namespace CRM_Micro_Credit.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CRM_Micro_Credit.Entity.Models.Agreement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Agreements");
+                });
+
+            modelBuilder.Entity("CRM_Micro_Credit.Entity.Models.Education", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Educations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Основное общее"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Среднее общее"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Среднее профессиональное"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Бакалавриат"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Специалитет, магистратура"
+                        });
+                });
 
             modelBuilder.Entity("CRM_Micro_Credit.Entity.Models.User", b =>
                 {
@@ -115,14 +180,14 @@ namespace CRM_Micro_Credit.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2,
+                            Id = 1,
                             AdditionalCity = "",
                             AdditionalPhone = "",
                             AdditionalRegion = "",
                             Appartment = "",
                             Area = "",
                             City = "",
-                            DayOfBirth = new DateTime(2023, 3, 9, 13, 28, 7, 925, DateTimeKind.Local).AddTicks(2842),
+                            DayOfBirth = new DateTime(2023, 3, 10, 16, 33, 19, 274, DateTimeKind.Local).AddTicks(9232),
                             Education = "",
                             Email = "mail@mail.ru",
                             Firstname = "",
@@ -139,7 +204,7 @@ namespace CRM_Micro_Credit.Migrations
                             Role = "Users",
                             SocialNumber = "",
                             Street = "",
-                            ValidityPeriod = new DateTime(2023, 3, 9, 13, 28, 7, 925, DateTimeKind.Local).AddTicks(2858),
+                            ValidityPeriod = new DateTime(2023, 3, 10, 16, 33, 19, 274, DateTimeKind.Local).AddTicks(9245),
                             Work = ""
                         });
                 });
@@ -166,6 +231,35 @@ namespace CRM_Micro_Credit.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ValidationCodes");
+                });
+
+            modelBuilder.Entity("CRM_Micro_Credit.Entity.Models.Work", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Works");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Инженер"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Менеджер"
+                        });
                 });
 #pragma warning restore 612, 618
         }

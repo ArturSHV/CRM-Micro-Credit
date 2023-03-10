@@ -22,19 +22,19 @@
                                         <select style="width: 30%;" class="bold-control" name="" id="">
                                             <option value="">+7</option>
                                         </select>
-                                        <span asp-validation-for="@Model.Mobile" style="color:red"></span>
-                                        <input style="width: 70%;" value="@Model.Mobile" class="bold-control" type="text" asp-for="@Model.Mobile" placeholder="">
+                                        <span asp-validation-for="@Model.Login.Mobile" style="color:red"></span>
+                                        <input style="width: 70%;" value="@Model.Login.Mobile" class="bold-control" type="text" asp-for="@Model.Login.Mobile" placeholder="">
                                     </div>
                                 </div>
                             </div>
 
-                            <input value="@Model.ReturnUrl" type="hidden" asp-for="@Model.ReturnUrl">
+                            <input value="@Model.Login.ReturnUrl" type="hidden" asp-for="@Model.Login.ReturnUrl">
 
                             <div class="col-md-3">
                                 <div class="controls-content">
                                     <label class="label-shit" for="email">Почта</label>
-                                    <span asp-validation-for="@Model.Email" style="color:red"></span>
-                                    <input class="bold-control" value="@Model.Email" type="text" asp-for="@Model.Email" placeholder="">
+                                    <span asp-validation-for="@Model.Login.Email" style="color:red"></span>
+                                    <input class="bold-control" value="@Model.Login.Email" type="text" asp-for="@Model.Login.Email" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -42,10 +42,10 @@
                 </div>
 
                 @{
-                    if (Model.ValidationCode != null)
+                    if (Model.Login.ValidationCode != null)
                     {
                         <p style="color:red">@ViewData["ErrorMessage"]</p>
-                        <input class="bold-control" type="text" asp-for="@Model.ValidationCode" placeholder="Введите код смс">
+                        <input class="bold-control" type="text" asp-for="@Model.Login.ValidationCode" placeholder="Введите код смс">
                         <input type="submit" class="button-classic" value="Подтвердить">
                     }
                 }

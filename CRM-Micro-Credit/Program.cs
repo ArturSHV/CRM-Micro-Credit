@@ -14,9 +14,9 @@ namespace CRM_Micro_Credit
 
             string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-			builder.Services.Configure<Salt>(builder.Configuration.GetSection("salt"));
+			builder.Services.Configure<Settings>(builder.Configuration.GetSection("Settings"));
 
-			builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
 
             builder.Services.AddMvc();
 

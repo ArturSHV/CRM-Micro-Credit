@@ -1,25 +1,21 @@
-﻿using CRM_Micro_Credit.Interfaces;
+﻿using CRM_Micro_Credit.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CRM_Micro_Credit.Entity.Models
 {
-    public class User : IUser
+    public class User
     {
-        public int Id { get; set; }
-        public string? Mobile { get; set; }
-        public string? Email { get; set; }
-        public string? Role { get; set; } = "Users";
-        [NotMapped]
-        public string ReturnUrl { get; set; }
-
-        [NotMapped]
-        public string ValidationCode { get; set; }
+		public int Id { get; set; }
+		public string? Mobile { get; set; }
+		public string? Email { get; set; }
+		public string? Role { get; set; } = "Users";
         public string? LastName { get; set; }
-        public string? Gender { get; set; }
-        public string? MaritalStatus { get; set; }
         public string? Firstname { get; set; }
         public string? Middlename { get; set; }
         public DateTime? DayOfBirth { get; set; }
+        public string? Gender { get; set; }
+        public string? MaritalStatus { get; set; }
         public string? SocialNumber { get; set; }
         public string? PassportNumber { get; set; }
         public string? PlaceOfBirth { get; set; }

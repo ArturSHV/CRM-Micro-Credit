@@ -4,6 +4,7 @@ using CRM_Micro_Credit.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRM_Micro_Credit.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230310133134_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,23 +41,14 @@ namespace CRM_Micro_Credit.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Agreements");
+                    b.HasIndex("UserId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Настоящие условия использования сервиса",
-                            Url = "Agreements/Terms"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Политика конфиденциальности сервиса",
-                            Url = "Agreements/Policy"
-                        });
+                    b.ToTable("Agreements");
                 });
 
             modelBuilder.Entity("CRM_Micro_Credit.Entity.Models.Education", b =>
@@ -198,7 +192,7 @@ namespace CRM_Micro_Credit.Migrations
                             Appartment = "",
                             Area = "",
                             City = "",
-                            DayOfBirth = new DateTime(2023, 3, 10, 16, 44, 59, 45, DateTimeKind.Local).AddTicks(2642),
+                            DayOfBirth = new DateTime(2023, 3, 10, 16, 31, 34, 216, DateTimeKind.Local).AddTicks(5591),
                             Education = "",
                             Email = "mail@mail.ru",
                             Firstname = "",
@@ -215,7 +209,7 @@ namespace CRM_Micro_Credit.Migrations
                             Role = "Users",
                             SocialNumber = "",
                             Street = "",
-                            ValidityPeriod = new DateTime(2023, 3, 10, 16, 44, 59, 45, DateTimeKind.Local).AddTicks(2652),
+                            ValidityPeriod = new DateTime(2023, 3, 10, 16, 31, 34, 216, DateTimeKind.Local).AddTicks(5608),
                             Work = ""
                         });
                 });
@@ -271,6 +265,17 @@ namespace CRM_Micro_Credit.Migrations
                             Id = 2,
                             Name = "Менеджер"
                         });
+                });
+
+            modelBuilder.Entity("CRM_Micro_Credit.Entity.Models.Agreement", b =>
+                {
+                    b.HasOne("CRM_Micro_Credit.Entity.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

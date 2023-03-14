@@ -1,0 +1,335 @@
+﻿@{
+	ViewData["Title"] = "Профиль";
+}
+
+@model ProfilePageModel
+
+
+<!-- Content -->
+<main>
+    <div class="container">
+        <div class="row">
+            <!-- Left content -->
+            <div class="col-md-3">
+                <div class="left-content">
+                    <div class="getcredit">
+                        <a href="/@nameof(LoginController)[..^10]" class="button-classic">Получить заем</a>
+                    </div>
+
+                    <div class="getnav">
+                        <a href="/" class="getnav-link">История микрокредитов</a>
+                        <a href="#password" data-bs-toggle="modal" data-bs-target="#password" class="getnav-link">Смена пароля</a>
+                        <a href="/" class="getnav-link">Вопрос ответ</a>
+                    </div>
+
+                    <div class="getsupport">
+                        <form action="" method="post">
+                            <div class="title-getsupport"><i class="las la-envelope"></i> Напишите нам</div>
+
+                            <div class="mb-3">
+                                <input class="shit-control" type="text" placeholder="Тема сообщения">
+                            </div>
+
+                            <div class="mb-3">
+                                <input class="shit-control" type="text" placeholder="Текст сообщения">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="input-file">
+                                    <input type="file" name="file">
+                                    <span class="input-file-btn"><i class="las la-paperclip"></i> Прекрепить файл</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="button-classic button-width">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right content -->
+            <div class="col-md-9">
+            <form asp-controller="@nameof(ProfileController)[..^10]" asp-action="@nameof(ProfileController.Index)" method="post">
+                <div class="right-content">
+                    <h1 class="title-page">Профиль </h1>
+
+                    <div class="page-card mb-5">
+                        <div class="page-title">Контактные Данные</div>
+                        <a class="page-edit">Редактировать</a>
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Мобильный телефон</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Mobile" value="@Model.User.Mobile" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Электронная почта</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Email" value="@Model.User.Email" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-card mb-5">
+                        <div class="page-title">Паспортные Данные</div>
+                        <a class="page-edit">Редактировать</a>
+                        <div class="page-content">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Фамилия</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.LastName" value="@Model.User.LastName" placeholder="Фамилия">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Имя</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Firstname" value="@Model.User.Firstname" placeholder="Имя">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Отчество</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Middlename" value="@Model.User.Middlename" placeholder="Отчество">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Дата рождения</label>
+                                        <div class="more-controls">
+                                                <input class="bold-control" type="date" value="@string.Format("{0:yyyy-MM-dd}", Model.User.DayOfBirth)" asp-for="@Model.User.DayOfBirth">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Пол</label>
+                                        <div class="radios-controls">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="male">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Мужской
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="female">
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    Женский
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Семейное положение</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.MaritalStatus" value="@Model.User.MaritalStatus" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">ИИН</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.SocialNumber" value="@Model.User.SocialNumber" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">№ Удостоверения личности</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.PassportNumber" value="@Model.User.PassportNumber" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Место рождения</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.PlaceOfBirth" value="@Model.User.PlaceOfBirth" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Срок Действия</label>
+                                        <div class="more-controls">
+                                                <input class="bold-control" type="date" value="@string.Format("{0:yyyy-MM-dd}", Model.User.ValidityPeriod)" asp-for="@Model.User.ValidityPeriod"><!---->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-card mb-5">
+                        <div class="page-title">Адрес регистрации</div>
+                        <a class="page-edit">Редактировать</a>
+                        <div class="page-content">
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Область</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Area" value="@Model.User.Area" placeholder="Область">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Регион проживания</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Region" value="@Model.User.Region" placeholder="Регион проживания">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Город/село</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.City" value="@Model.User.City" placeholder="Город/село">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Улица/Микрорайон</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Street" value="@Model.User.Street" placeholder="Улица/Микрорайон">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Дом</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.House" value="@Model.User.House" placeholder="Дом">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Квартира</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Appartment" value="@Model.User.Appartment" placeholder="Квартира">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-card mb-5">
+                        <div class="page-title">Занятость и доходы</div>
+                        <a class="page-edit">Редактировать</a>
+                        <div class="page-content">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Занятость</label>
+                                        @{
+                                            for (int i = 0; i < Model.Works.Count(); i++)
+                                            {
+                                                <input value="@Model.Works[i].Name" asp-for="@Model.Works[i].Name" type="hidden">
+                                            }
+                                        }
+
+                                        <select class="bold-control" asp-for="@Model.User.Work">
+                                            @{
+                                                for (int i = 0; i < Model.Works.Count(); i++)
+                                                {
+                                                    <option value="@Model.Works[i].Name">@Model.Works[i].Name</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Образование</label>
+
+                                        @{
+                                            for (int i = 0; i < Model.Educations.Count(); i++)
+                                            {
+                                                    <input type="hidden" asp-for="@Model.Educations[i].Name" value="@Model.Educations[i].Name" />
+                                            }
+                                        }
+
+                                    <select class="bold-control" asp-for="@Model.User.Education">
+                                            @{
+                                                for (int i = 0; i < Model.Educations.Count(); i++)
+                                                {
+                                                        <option value="@Model.Educations[i].Name">@Model.Educations[i].Name</option>
+                                                }
+                                            }
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Ежемесячный доход, в тг.</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.Revenue" value="@Model.User.Revenue" placeholder="Введите значение">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="page-card mb-3">
+                        <div class="page-title">Дополнительный контакт</div>
+                        <a class="page-edit">Редактировать</a>
+                        <div class="page-content">
+                            <div class="row mb-3">
+                                <div class="basic-info">Укажите дополнительный контакт</div>
+
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Номер телефона</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.AdditionalPhone" value="@Model.User.AdditionalPhone" placeholder="Регион проживания">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Регион проживания</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.AdditionalRegion" value="@Model.User.AdditionalRegion" placeholder="Регион проживания">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="controls-content">
+                                        <label class="label-shit">Город/село</label>
+                                        <input class="bold-control" type="text" asp-for="@Model.User.City" value="@Model.User.City" placeholder="Город/село">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="center-button">
+                        <button type="submit" class="button-classic">Редактировать</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</main>

@@ -71,7 +71,7 @@
                             User.Claims.Where(x => x.Type.Contains(nameof(ClaimTypes.MobilePhone).ToLower())).FirstOrDefault()?.Value;
 
                             <li class="nav-item">
-                                <a class="nav-link nav-profile" href="/Profile">
+                                <a class="nav-link nav-profile" href="/@nameof(ProfileController)[..^10]">
                                     <div class="avatar"></div>
                                     <div class="username">
                                         @claim

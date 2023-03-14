@@ -11,10 +11,13 @@ namespace CRM_Micro_Credit.Entity
         public DbSet<Education> Educations { get; set; }
         public DbSet<Work> Works { get; set; }
         public DbSet<Agreement> Agreements { get; set; }
-        public DataContext(DbContextOptions<DataContext> options)
+        public DbSet<UserAgreement> UserAgreements { get; set; }
+
+		public DataContext(DbContextOptions<DataContext> options)
         : base(options)
         {
-            
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,29 +27,33 @@ namespace CRM_Micro_Credit.Entity
             modelBuilder.Entity<Agreement>().HasData(
                 new Agreement
                 {
-                    Id= 1,
+                    Id = 1,
                     Name = "Настоящие условия использования сервиса",
-                    Url = $"{nameof(AgreementsController)[..^10]}/Terms"
-				},
-				new Agreement
-				{
-					Id = 2,
-					Name = "Политика конфиденциальности сервиса",
-					Url = $"{nameof(AgreementsController)[..^10]}/Policy"
-				}
-				);
+                    Url = $"{nameof(AgreementsController)[..^10]}/Terms",
+                    PageNames = "{\"required\":[{\"" + $"{nameof(InfoCreditController)[..^10]}/{nameof(InfoCreditController.Index)}" + "\"}]}",
+                    Description = "описание1"
+                },
+                new Agreement
+                {
+                    Id = 2,
+                    Name = "Политика конфиденциальности сервиса",
+                    Url = $"{nameof(AgreementsController)[..^10]}/Policy",
+                    PageNames = "{\"required\":[{\"" + $"{nameof(InfoCreditController)[..^10]}/{nameof(InfoCreditController.Index)}",
+                    Description = "описание2"
+                }
+                );
 
             modelBuilder.Entity<Work>().HasData(
-                new Work 
-                { 
+                new Work
+                {
                     Id = 1,
                     Name = "Инженер"
                 },
                 new Work
-				{
-					Id = 2,
-					Name = "Менеджер"
-				}
+                {
+                    Id = 2,
+                    Name = "Менеджер"
+                }
             );
 
             modelBuilder.Entity<Education>().HasData(
@@ -77,19 +84,19 @@ namespace CRM_Micro_Credit.Entity
                 });
 
             modelBuilder.Entity<User>().HasData(
-				new User
-				{
-					Id = 1,
-					Email = "mail@mail.ru",
-					Mobile = "8999",
-					Role = "Users",
+                new User
+                {
+                    Id = 1,
+                    Email = "mail@mail.ru",
+                    Mobile = "8999",
+                    Role = "Users",
                     AdditionalCity = "",
                     AdditionalRegion = "",
                     AdditionalPhone = "",
                     Appartment = "",
                     Area = "",
                     City = "",
-                    DayOfBirth= DateTime.Now,
+                    DayOfBirth = DateTime.Now,
                     Education = "",
                     Firstname = "",
                     Gender = "",
@@ -105,9 +112,9 @@ namespace CRM_Micro_Credit.Entity
                     Street = "",
                     ValidityPeriod = DateTime.Now,
                     Work = ""
-                    
-				});
 
-		}
+                });
+
+        }
     }
 }

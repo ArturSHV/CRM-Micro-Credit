@@ -33,11 +33,6 @@ namespace CRM_Micro_Credit
                     builder.RequireClaim(ClaimTypes.Role, "Administrator");
                 });
 
-				//options.AddPolicy("Manager", builder =>
-				//{
-				//    builder.RequireClaim(ClaimTypes.Role, "Manager");
-				//});
-
 				options.AddPolicy("Users", builder =>
 				{
 					builder.RequireClaim(ClaimTypes.Role, "Users");
@@ -55,7 +50,9 @@ namespace CRM_Micro_Credit
 
             app.UseStaticFiles();
 
-            app.UseRouting();
+			app.UseStatusCodePagesWithRedirects("/Error/404");
+
+			app.UseRouting();
 
             app.UseAuthentication();
 

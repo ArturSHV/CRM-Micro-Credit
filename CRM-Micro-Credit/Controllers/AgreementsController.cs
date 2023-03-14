@@ -1,18 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CRM_Micro_Credit.Entity;
+using CRM_Micro_Credit.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CRM_Micro_Credit.Controllers
 {
 	public class AgreementsController : Controller
 	{
-		public IActionResult Index()
+		private DataContext dataContext { get; set; }
+		public AgreementsController([FromServices] DataContext dataContext)
 		{
-			return View();
+			this.dataContext = dataContext;
 		}
 
 		[HttpGet]
+		[Route("{controller}/{Name}")]
 		public IActionResult Index(string Name)
 		{
-			return View();
+			var url = $"{nameof(AgreementsController)[..^10]}/{Name}";
+
+			var agreement = dataContext.Agreements.FirstOrDefault(x=>x.Url == url);
+
+			if (agreement == null)
+				return Redirect($"/{nameof(ErrorController)[..^10]}");
+
+			return View(new AgreementPageModel { Agreement = agreement});
 		}
 	}
 }

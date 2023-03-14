@@ -25,7 +25,7 @@ namespace CRM_Micro_Credit.Controllers
         {
             if (User.Identity?.IsAuthenticated == true)
             {
-                return Redirect("/Profile");
+                return Redirect($"/{nameof(ProfileController)[..^10]}");
             }
 
             LoginPageModel loginPage = new LoginPageModel() { Login = new Login()};
@@ -59,6 +59,13 @@ namespace CRM_Micro_Credit.Controllers
 
                 var user = dataContext.Users.Where(x=>x.Mobile == loginPage.Login.Mobile).FirstOrDefault();
 
+                if (user == null)
+                {
+                    dataContext.Users.Add(new User() { Mobile = loginPage.Login.Mobile, Email = loginPage.Login.Email});
+
+                    dataContext.SaveChanges();
+                }
+
                 var dict = new Dictionary<string, string>();
                 dict.Add(ClaimTypes.MobilePhone, loginPage.Login.Mobile);
                 dict.Add(ClaimTypes.Name, loginPage.Login.Mobile);
@@ -66,7 +73,7 @@ namespace CRM_Micro_Credit.Controllers
 
                 ClaimsHelper.SetCookieAsync(HttpContext, dict);
 
-                return Redirect("/InfoCredit");
+                return Redirect($"/{nameof(InfoCreditController)[..^10]}");
             }
 
         }
@@ -75,7 +82,7 @@ namespace CRM_Micro_Credit.Controllers
         public IActionResult LogOff()
         {
             HttpContext.SignOutAsync("Cookie");
-            return Redirect("/Lk");
+            return Redirect($"/{nameof(HomeController)[..^10]}");
         }
     }
 }

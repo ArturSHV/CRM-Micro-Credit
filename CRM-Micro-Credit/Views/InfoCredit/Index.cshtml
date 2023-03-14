@@ -47,7 +47,7 @@
 								<div class="controls-content">
 									<label class="label-shit">Дата рождения</label>
 									<div class="more-controls">
-										<input class="bold-control" type="date" value="@Model.User.DayOfBirth" asp-for="@Model.User.DayOfBirth"><!---->
+										<input class="bold-control" type="date" value="@string.Format("{0:yyyy-MM-dd}", Model.User.DayOfBirth)" asp-for="@Model.User.DayOfBirth"><!---->
 									</div>
 								</div>
 							</div>
@@ -56,19 +56,57 @@
 								<div class="controls-content">
 									<label class="label-shit">Пол</label>
 									<div class="radios-controls">
-										<div class="form-check">
-											<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="male">
-											<label class="form-check-label">
-												Мужской
-											</label>
-										</div>
 
-										<div class="form-check">
-											<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="female">
-											<label class="form-check-label">
-												Женский
-											</label>
-										</div>
+										@{
+											if (Model.User.Gender == "Мужской")
+											{
+												<div class="form-check">
+													<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="Мужской" checked>
+													<label class="form-check-label">
+														Мужской
+													</label>
+												</div>
+
+												<div class="form-check">
+													<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="Женский">
+													<label class="form-check-label">
+														Женский
+													</label>
+												</div>
+											}
+											else if (Model.User.Gender == "Женский")
+											{
+												<div class="form-check">
+													<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="Мужской">
+													<label class="form-check-label">
+														Мужской
+													</label>
+												</div>
+
+												<div class="form-check">
+													<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="Женский" checked>
+													<label class="form-check-label">
+														Женский
+													</label>
+												</div>
+											}
+											else
+											{
+												<div class="form-check">
+													<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="Мужской">
+													<label class="form-check-label">
+														Мужской
+													</label>
+												</div>
+
+												<div class="form-check">
+													<input class="form-check-input" type="radio" asp-for="@Model.User.Gender" value="Женский">
+													<label class="form-check-label">
+														Женский
+													</label>
+												</div>
+											}
+										}
 									</div>
 								</div>
 							</div>
@@ -110,7 +148,7 @@
 								<div class="controls-content">
 									<label class="label-shit">Срок Действия</label> <!---->
 									<div class="more-controls">
-										<input class="bold-control" type="date" value="@Model.User.ValidityPeriod" asp-for="@Model.User.ValidityPeriod"><!---->
+										<input class="bold-control" type="date" value="@string.Format("{0:yyyy-MM-dd}", Model.User.ValidityPeriod)" asp-for="@Model.User.ValidityPeriod"><!---->
 									</div>
 								</div>
 							</div>
@@ -201,7 +239,7 @@
 							<div class="col-md-6">
 								<div class="controls-content">
 									<label class="label-shit">Образование</label>
-									
+
 									@{
 										for (int i = 0; i < Model.Educations.Count(); i++)
 										{
@@ -211,7 +249,7 @@
 
 									<select class="bold-control" asp-for="@Model.User.Education">
 										@{
-											for(int i = 0; i < Model.Educations.Count(); i++)
+											for (int i = 0; i < Model.Educations.Count(); i++)
 											{
 												<option value="@Model.Educations[i].Name">@Model.Educations[i].Name</option>
 											}
@@ -263,16 +301,17 @@
 					</div>
 				</div>
 
-				@{
-					if (Model.Agreements.Count() != 0)
-					{
+				<p style="color:red">@ViewData["ErrorMessage"]<p />
+					@{
+						if (Model.Agreements.Count() != 0)
+						{
 						<div class="page-card mb-3">
 							<div class="page-title">Согласие с условиями</div>
 							<div class="page-content">
 								<div class="row mb-3">
-									@{
-										for(int i = 0; i < Model.Agreements.Count(); i++)
-										{
+										@{
+											for (int i = 0; i < Model.Agreements.Count(); i++)
+											{
 											<input type="hidden" asp-for="@Model.Agreements[i].Url" value="@Model.Agreements[i].Url">
 											<input type="hidden" asp-for="@Model.Agreements[i].Name" value="@Model.Agreements[i].Name">
 
@@ -283,14 +322,14 @@
 													<a href="@Model.Agreements[i].Url">@Model.Agreements[i].Name</a>
 												</label>
 											</div>
+											}
 										}
-									}
-									
+
 								</div>
 							</div>
 						</div>
+						}
 					}
-				}
 
 				<div class="center-button">
 					<button type="submit" class="button-classic">Редактировать</button>
